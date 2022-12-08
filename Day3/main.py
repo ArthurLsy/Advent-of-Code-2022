@@ -34,8 +34,34 @@ def part1():
 
     return score
 
+def part2():
+    global letters
 
+    letter = letters
+    total = 0
+    lines = []
 
+    with open("input.txt") as file:
+        counter = 0
+        start = 0
+        stop = 3
+        for line in file:
+            lines.append(line.strip())
+            curr_group = lines[start:stop]
+            counter += 1
+
+            if counter % 3 == 0:
+                for letter in curr_group[0]:
+                    if letter in curr_group[1]:
+                        if letter in curr_group[2]:
+                            total += letters.index(letter) + 1
+                            break
+                start += 3
+                stop += 3
+
+    return total
 
 
 print('Partie 1 :', part1())
+
+print('Partie 2 :', part2())
